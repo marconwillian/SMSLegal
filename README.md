@@ -36,6 +36,11 @@ smslegal.config({user: "YOUR_USER", pass: "YOUR_PASS"});
 smslegal.send({numberSMS: 5566999999999, message: "Messege SMS"})
 ```
 
+You can verify status of your sms of you send.
+```
+smslegal.verifyStatus({messageId: 123112})
+```
+
 ## License
 
   [MIT](LICENSE)
