@@ -1,6 +1,6 @@
 {
   "name": "smslegal",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Conecção com a API do smslegal.com.br para envio de sms.",
   "main": "index.js",
   "scripts": {
@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/marconwillian/smslegal/issues"
   },
-  "homepage": "https://github.com/marconwillian/smslegal#readme"
+  "homepage": "https://github.com/marconwillian/smslegal#readme",
+  "dependencies": {
+    "node-fetch": "^2.6.0"
+  }
 }
