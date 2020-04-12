@@ -6,6 +6,22 @@ const data = {
     urlBase: 'null'
 };
 
+const access = {
+    message: () => {
+        if(!data.user)
+            return {error: "ERR", message: "User don't definided"}
+    
+        if(!data.pass)
+            return {error: "ERR", message: "Pass don't definided"}
+    },
+    verify: () => {
+        if(!data.user)
+            return true
+    
+        if(!data.pass)
+            return true
+    }
+}
 
 const smslegal = {
     config: ({user, pass}) => {
@@ -15,11 +31,8 @@ const smslegal = {
     },
     send: async ({numberSMS, message}) => {
 
-        if(!data.user)
-            return {error: "ERR", message: "User don't definided"}
-
-        if(!data.pass)
-            return {error: "ERR", message: "Pass don't definided"}
+        if(access.verify())
+            return access.message();
 
         const request = await fetch(`${data.urlBase}&ta=pv&to=${numberSMS}&msg=${message}`);
         const response = await request.text();
@@ -41,11 +54,8 @@ const smslegal = {
     },
     verifyStatus: async ({messageId}) => {
 
-        if(!data.user)
-            return {error: "ERR", message: "User don't definided"}
-
-        if(!data.pass)
-            return {error: "ERR", message: "Pass don't definided"}
+        if(access.verify())
+            return access.message();
             
         const request = await fetch(`${data.urlBase}&ta=ds&slid=${messageId}`);
         const response = await request.text();
@@ -78,6 +88,28 @@ const smslegal = {
                 message
             };
         };
+        return logResponse;
+    },
+    balance: async () => {
+
+        if(access.verify())
+            return access.message();
+
+        const request = await fetch(`${data.urlBase}&ta=cr`);
+        const response = await request.text();
+
+        if(response.includes('OK')){
+            var logResponse = {
+                    statusRequest: "success",
+                    smsRemaining: parseInt(response.split("OK ")[1])
+                };                
+        } else if(response.includes('ERR')){
+            var logResponse = {
+                statusRequest: "error",
+                number: parseInt(response.split("ERR ")[1])
+            };
+        }
+
         return logResponse;
     }
 }

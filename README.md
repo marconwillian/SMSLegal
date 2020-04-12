@@ -30,6 +30,11 @@ smslegal.config({user: "YOUR_USER", pass: "YOUR_PASS"});
 
 ## Examples
 
+Verify balance of accont.
+```
+smslegal.balance()
+```
+
   You can send a async sms, the number has to count the code 55 from brazil, after the ddd without the 0, plus 9 mobile number:
 
 ```
@@ -40,6 +45,8 @@ You can verify status of your sms of you send.
 ```
 smslegal.verifyStatus({messageId: 123112})
 ```
+
+
 
 ## License
 
