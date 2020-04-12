@@ -1,0 +1,23 @@
+{
+  "name": "smslegal",
+  "version": "0.0.1",
+  "description": "Conecção com a API do smslegal.com.br para envio de sms.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/marconwillian/smslegal.git"
+  },
+  "keywords": [
+    "smslegal",
+    "enviodesms"
+  ],
+  "author": "Marcon Willian Oliveira Neves <“marconwillian@protonmail.com”>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/marconwillian/smslegal/issues"
+  },
+  "homepage": "https://github.com/marconwillian/smslegal#readme"
+}
