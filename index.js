@@ -1,21 +1,22 @@
 const fetch = require("node-fetch");
-
-const smslegal = {
+const data = {
     user: 'null',
-    pass: 'null',
+    pass: 'null'
+}
+const smslegal = {
     config: ({user, pass}) => {
-        this.user = user;
-        this.pass = pass;
+        data.user = user;
+        data.pass = pass;
     },
     send: async ({numberSMS, message}) => {
 
-        if(!this.user)
+        if(!data.user)
             return {error: "ERR", message: "User don't definided"}
 
-        if(!this.pass)
+        if(!data.pass)
             return {error: "ERR", message: "Pass don't definided"}
 
-        const request = await fetch(`http://smsmarketing.smslegal.com.br/index.php?app=webservices&u=${this.user}&p=${this.pass}&ta=pv&to=${numberSMS}&msg=${message}`);
+        const request = await fetch(`http://smsmarketing.smslegal.com.br/index.php?app=webservices&u=${data.user}&p=${data.pass}&ta=pv&to=${numberSMS}&msg=${message}`);
         const response = await request.text();
 
 
