@@ -13,6 +13,8 @@ $ npm install smslegal
 ## Features
 
   * Enviar SMS
+  * Verificar Status de SMS
+  * Verificar Quantidade de SMS
 
 ## Config Start
 
