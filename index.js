@@ -1,4 +1,4 @@
-const fetch = require("node-fetch");
+const request = require("./request");
 
 const data = {
     user: 'null',
@@ -34,8 +34,7 @@ const smslegal = {
         if(access.verify())
             return access.message();
 
-        const request = await fetch(`${data.urlBase}&ta=pv&to=${numberSMS}&msg=${message}`);
-        const response = await request.text();
+        const response = await request.get(`${data.urlBase}&ta=pv&to=${numberSMS}&msg=${message}`);
 
 
         if(response.includes('OK')){
@@ -57,8 +56,7 @@ const smslegal = {
         if(access.verify())
             return access.message();
             
-        const request = await fetch(`${data.urlBase}&ta=ds&slid=${messageId}`);
-        const response = await request.text();
+        const response = await request.get(`${data.urlBase}&ta=ds&slid=${messageId}`);
         const statusSMS = parseInt(response);
 
         if(response.includes('ERR')){
@@ -95,8 +93,7 @@ const smslegal = {
         if(access.verify())
             return access.message();
 
-        const request = await fetch(`${data.urlBase}&ta=cr`);
-        const response = await request.text();
+        const response = await request.get(`${data.urlBase}&ta=cr`);
 
         if(response.includes('OK')){
             var logResponse = {
