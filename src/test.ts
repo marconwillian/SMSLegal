@@ -1,15 +1,18 @@
-const smslegal = require('./index');
+import smslegal from './index';
 
 smslegal.config({user: 'USER', pass: 'PASS'});
+
+
 
 const numberSMS = 5566996956402;
 const message = 'Olar, quero uma mensagem de tudo bem?';
 const messageId = 2396622;
 
-const enviar = async () => {
+const enviar = async (): Promise<void> => {
     //const response = await smslegal.verifyStatus({messageId});
     //const response = await smslegal.send({numberSMS, message});
     const response = await smslegal.balance();
+    
     console.log(response);
 }
 
