@@ -1,5 +1,7 @@
 import { get } from "./utils/request";
 
+import statusSmsMessage from './utils/statusSmsMessage';
+
 interface ErrorAccess {
     error: string;
     message: string;
@@ -55,9 +57,9 @@ const access: Access = {
         let errorReturn: ErrorAccess;
 
         if(access.user===undefined) {
-            errorReturn =  {error: "ERR", message: "User don't definided"};
+            errorReturn =  {error: "ERR", message: "User don't defined"};
         } else {
-            errorReturn =  {error: "ERR", message: "Pass don't definided"};
+            errorReturn =  {error: "ERR", message: "Pass don't defined"};
         }
         
         return errorReturn;
@@ -81,6 +83,7 @@ const config = ({user, pass}: ConfigOptionsModel): void => {
     access.pass = pass;
     endPoint = `http://smsmarketing.smslegal.com.br/index.php?app=webservices&u=${access.user}&p=${access.pass}`;
 };
+
 const send = async ({numberSMS, message}: SendData): Promise<Send> => {
 
     if(!access.verify())
@@ -107,6 +110,7 @@ const send = async ({numberSMS, message}: SendData): Promise<Send> => {
 
     return logResponse;
 };
+
 const verifyStatus = async ({messageId}: VerifyStatusData): Promise<VerifyStatus> => {
 
     if(!access.verify())
@@ -126,25 +130,8 @@ const verifyStatus = async ({messageId}: VerifyStatusData): Promise<VerifyStatus
             number: parseInt(response.split("ERR ")[1])
         };
     } else {
-        let message: string;
-        switch (statusSMS) {
-            case 0:
-                message = 'SMS PROCESSADA - AGUARDA ATUALIZAÇÃO DA OPERADORA.';
-                break;
-            case 1:
-                message = 'SMS ENTREGUE NA OPERADORA - AGUARDA ATUALIZAÇÃO DO STATUS FINAL.';
-                break;
-            case 2:
-                message = 'FALHA NO ENVIO DA SMS - OCORREU UMA FALHA NO ENVIO DA MENSAGEM.';
-                break;
-            case 3:
-                message = 'SMS ENTREGUE NO CELULAR - SMS FOI ENTREGUE NO CELULAR DE DESTINO. STATUS FINAL.';
-                break;
-            default: 
-                message = '';
-                break;
-        }
-
+        let message: string = statusSmsMessage(statusSMS);
+        
         logResponse = {
             statusRequest: "success",
             statusSMS,
@@ -153,6 +140,7 @@ const verifyStatus = async ({messageId}: VerifyStatusData): Promise<VerifyStatus
     };
     return logResponse;
 };
+
 const balance = async (): Promise<Balance> => {
 
     if(!access.verify())
@@ -191,7 +179,7 @@ const balance = async (): Promise<Balance> => {
         }
 
         return errorResponse;
-    }    
+    }
 };
 
 export default {config, send, verifyStatus, balance};

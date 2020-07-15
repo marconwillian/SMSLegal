@@ -1,9 +1,10 @@
 {
   "name": "smslegal",
-  "version": "1.0.1",
-  "description": "Conecção com a API do smslegal.com.br para envio de sms.",
+  "version": "1.0.3",
+  "description": "Conexão com a API do smslegal.com.br para envio de sms.",
   "main": "dist/index.js",
   "scripts": {
+    "pb": "tsc && npm publish",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
