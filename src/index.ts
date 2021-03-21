@@ -96,12 +96,12 @@ const send = async ({ numberSMS, message }: SendData): Promise<Send> => {
       statusRequest: "success",
       messageId: parseInt(response.split("OK ")[1])
     };
-  } else if (response.includes('ERR')) {
-    return {
-      statusRequest: "error",
-      number: parseInt(response.split("ERR ")[1])
-    };
   }
+
+  return {
+    statusRequest: "error",
+    number: parseInt(response.split("ERR ")[1])
+  };
 };
 
 const verifyStatus = async ({ messageId }: VerifyStatusData): Promise<VerifyStatus> => {
