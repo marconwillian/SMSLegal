@@ -1,14 +1,15 @@
 {
   "name": "smslegal",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Conexão com a API do smslegal.com.br para envio de sms.",
   "main": "dist/index.js",
   "scripts": {
-    "pb": "tsc && npm publish"
+    "pb": "tsc && npm publish",
+    "build": "tsc"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/marconwillian/smslegal.git"
+    "url": "https://github.com/marconwillian/smslegal.git"
   },
   "keywords": [
     "smslegal",
