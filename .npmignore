@@ -1,0 +1,16 @@
+.github/
+.vscode/
+
+src/
+.editorconfig
+.eslintignore
+prettier.config.js
+tsconfig.json
+
+tests/
+jest.config.json
+
+.gitignore
+
+node_modules/
+yarn.lock

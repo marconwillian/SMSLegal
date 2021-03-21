@@ -61,7 +61,7 @@ const access: Access = {
         } else {
             errorReturn =  {error: "ERR", message: "Pass don't defined"};
         }
-        
+
         return errorReturn;
     },
     verify: () => {
@@ -69,7 +69,7 @@ const access: Access = {
         if(access.user!==undefined){
             return true
         }
-    
+
         if(access.pass!==undefined){
             return true
         }
@@ -100,7 +100,7 @@ const send = async ({numberSMS, message}: SendData): Promise<Send> => {
         logResponse = {
                 statusRequest: "success",
                 messageId: parseInt(response.split("OK ")[1])
-            };                
+            };
     } else if(response.includes('ERR')){
         logResponse = {
             statusRequest: "error",
@@ -115,7 +115,7 @@ const verifyStatus = async ({messageId}: VerifyStatusData): Promise<VerifyStatus
 
     if(!access.verify())
         return access.message();
-        
+
     const response = await get(`${endPoint}&ta=ds&slid=${messageId}`) as string;
     const statusSMS = parseInt(response);
 
@@ -131,7 +131,7 @@ const verifyStatus = async ({messageId}: VerifyStatusData): Promise<VerifyStatus
         };
     } else {
         let message: string = statusSmsMessage(statusSMS);
-        
+
         logResponse = {
             statusRequest: "success",
             statusSMS,
@@ -149,14 +149,14 @@ const balance = async (): Promise<Balance> => {
     try {
 
         const response = await get(`${endPoint}&ta=cr`) as string;
-        
+
         let logResponse: Balance;
 
         if(response.includes('OK')){
             logResponse = {
                     statusRequest: "success",
                     smsRemaining: parseInt(response.split("OK ")[1])
-                };                
+                };
         } else if(response.includes('ERR')){
             throw response;
         } else {
