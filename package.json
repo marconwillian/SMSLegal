@@ -1,6 +1,6 @@
 {
   "name": "smslegal",
-  "version": "1.0.3",
+  "version": "1.0.5",
   "description": "Conexão com a API do smslegal.com.br para envio de sms.",
   "main": "dist/index.js",
   "scripts": {
